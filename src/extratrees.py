@@ -41,7 +41,7 @@ class ProjectAgent():
         S2 = []
         D = []
         for _ in tqdm(range(horizon), disable=disable_tqdm):
-            if np.random.rand < act_randomness:
+            if np.random.randn() < act_randomness:
                 a = env.action_space.sample()
             else:
                 a = self.act(s)
