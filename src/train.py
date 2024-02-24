@@ -162,5 +162,6 @@ config = {'nb_actions': env.action_space.n,
 
 # Train agent
 agent = ProjectAgent(config, DQN)
-agent.save('src/DQNagent.pt')
 scores = agent.train(env, 200)
+agent.save('src/DQNagent.pt')
+
