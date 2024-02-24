@@ -30,7 +30,7 @@ def greedy_action_fqi(Q,s,nb_actions):
 class ProjectAgent():
 
     def __init__(self):
-        pass
+        self.Q = np.zeros((3000, env.action_space.n))
 
     def collect_samples(self, horizon, act_randomness,  env = env, disable_tqdm=False, print_done_states=False):
         s, _ = env.reset()
@@ -90,10 +90,10 @@ class ProjectAgent():
 
     def act(self, observation, use_random=False):
             # print(observation)
-            if use_random:
-                return np.random.choice(self.env.action_space.n)
+            if use_random or iteration == 0:
+                return np.random.choice(env.action_space.n)
             Qs0a = []
-            for a in range(self.env.action_space.n):
+            for a in range(env.action_space.n):
                 s0a = np.append(observation,a).reshape(1, -1)
                 Qs0a.append(self.Q.predict(s0a))
             return np.argmax(Qs0a)
